@@ -33,7 +33,7 @@ $ php bin/vendors install
 
 ### Step 2: Configure the Autoloader
 
-Add the `FOS` namespace to your autoloader:
+Add the `ICE` namespace to your autoloader:
 
 ``` php
 <?php
