@@ -23,6 +23,7 @@ interface CrumbInterface
     
     /**
      * Sets the url of the breadcrumb.
+     * 
      * @param string $url
      */
     public function setUrl($url);
