@@ -1,0 +1,12 @@
+{% block breadcrumb %}
+{% if trail|length() %}
+<div id="breadcrumbs">
+    {% for crumb in trail %}
+        <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+        {% if not loop.last %}
+        &nbsp;&nbsp;&gt;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
