@@ -1,13 +1,5 @@
-Getting Started With FOSUserBundle
+Getting Started With ICEBreadcrumbsBundle
 ==================================
-
-The Symfony2 security component provides a flexible security framework that
-allows you to load users from configuration, a database, or anywhere else
-you can imagine. The FOSUserBundle builds on top of this to make it quick
-and easy to store users in a database.
-
-So, if you need to persist and fetch the users in your system to and from
-a database, then you're in the right place.
 
 ## Installation
 
@@ -69,3 +61,29 @@ public function registerBundles()
     );
 }
 ```
+
+Usage
+=====
+
+In your application controller methods:
+``` php
+<?php
+// MyBundle/Controller/MyController.php
+public function yourAction()
+{
+    $this->get("breadcrumbs")
+        ->with("Home", $this->get("router")->generate("index"))
+        ->with("Mypage", $this->get("router")->generate("mypage"));
+}
+```
+and in your template:
+```
+    {{ breadcrumbs() }}
+```
+
+Changing the template
+=======================
+
+If you want to change the breadcrumbs template copy the
+`Resources/views/breadcrumbs.html.twig` file to
+`app/Resources/ICEBreadcrumbsBundle/views`, and customize.
