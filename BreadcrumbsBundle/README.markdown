@@ -11,7 +11,7 @@ The documentation can be found in:
 
     Resources/doc/index.rst
 
-See on GitHub: https://github.com/nielskrijger/ICEBreadcrumbsBundle/Resources/doc/index.rst
+See on GitHub: https://github.com/nielskrijger/ICEBreadcrumbsBundle/blob/master/Resources/doc/index.rst
 
 License
 -------
