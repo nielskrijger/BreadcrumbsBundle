@@ -1,7 +1,8 @@
 Features
 ========
 
-- Simple service with a chained interface
+A Symfony2 bundle with:
+- Breadcrumbs service with a chained interface
 - Twig integration
 
 Documentation
@@ -9,14 +10,12 @@ Documentation
 
 The documentation can be found in:
 
-    Resources/doc/index.rst
-
-See on GitHub: https://github.com/nielskrijger/BreadcrumbsBundle/blob/master/BreadcrumbsBundle/Resources/doc/index.md
+    Resources/doc/index.md
 
 License
 -------
 
-This bundle is free to use, change, and whatever you feel like doing with it.
+Do whatever you like with this bundle.
 
 Reporting an issue or a feature request
 ---------------------------------------
