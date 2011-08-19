@@ -66,6 +66,7 @@ Usage
 =====
 
 In your application controller methods:
+
 ``` php
 <?php
 // MyBundle/Controller/MyController.php
@@ -76,7 +77,9 @@ public function yourAction()
         ->with("Mypage", $this->get("router")->generate("mypage"));
 }
 ```
+
 and in your template:
+
 ```
     {{ breadcrumbs() }}
 ```
