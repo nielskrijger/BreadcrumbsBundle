@@ -11,8 +11,8 @@ To install the ICEBreadcrumbsBundle you need to perform three steps:
 
 ### Step 1: Download ICEBreadcrumbsBundle
 
-The destination of the ICEBreadcrumbsBundle files are the
-`vendor/bundles/ICE/UserBundle` directory.
+The destination of the ICEBreadcrumbsBundle files is the
+`vendor/bundles/ICE/BreadcrumbsBundle` directory.
 
 While there are several ways to do this, we explain it here using the `deps`
 file.
