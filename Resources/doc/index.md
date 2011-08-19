@@ -75,8 +75,27 @@ You can access it in your controller directly:
 public function yourAction()
 {
     $this->get("breadcrumbs")
-        ->with("Home", $this->get("router")->generate("index"))
-        ->with("Mypage", $this->get("router")->generate("mypage"));
+        ->add("Home", $this->get("router")->generate("index"))
+        ->add("Mypage", $this->get("router")->generate("mypage"));
+}
+```
+
+You can split the steps to create crumbs for each separate page:
+
+``` php
+<?php
+// MyBundle/Controller/MyController.php
+
+public function firstActionTrail()
+{
+    return $this->get("breadcrumbs")
+        ->add("Home", $this->get("router")->generate("index"));
+}
+
+public function secondActionTrail()
+{
+    return $this->firstActionTrail()
+        ->add("Mypage", $this->get("router")->generate("mypage"))
 }
 ```
 

@@ -5,8 +5,8 @@ namespace ICE\BreadcrumbsBundle\Model;
 use ICE\BreadcrumbsBundle\Model\CrumbInterface;
 
 /**
- * A breadcrumb or simply crumb consists of an url and title which form a step
- * in the navigation path of the current page.
+ * A breadcrumb or simply crumb consists of an url and title. A crumb form a step
+ * in the navigation path of a page.
  */
 class Crumb implements CrumbInterface
 {

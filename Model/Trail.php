@@ -7,6 +7,9 @@ use ICE\BreadcrumbsBundle\Model\TrailInterface,
     Countable,
     Iterator;
 
+/**
+ * A Trail maintains all steps taken to get to the current page.
+ */
 class Trail implements TrailInterface, Iterator, Countable
 {
     private $container = array();
