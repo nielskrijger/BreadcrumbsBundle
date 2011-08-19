@@ -21,4 +21,4 @@ This bundle is free to use, change, and whatever you feel like doing with it.
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests should be reported here: [GitHub issue tracker](https://github.com/nielskrijger/ICEBreadcrumbsBundle/issues).
+Issues and feature requests should be reported here: [GitHub issue tracker](https://github.com/nielskrijger/BreadcrumbsBundle/issues).

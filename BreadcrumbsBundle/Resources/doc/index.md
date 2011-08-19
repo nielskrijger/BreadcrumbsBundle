@@ -65,11 +65,13 @@ public function registerBundles()
 Usage
 =====
 
-In your application controller methods:
+The breadcrumbs trail is available as a service.
+You can access it in your controller directly:
 
 ``` php
 <?php
 // MyBundle/Controller/MyController.php
+
 public function yourAction()
 {
     $this->get("breadcrumbs")
@@ -78,10 +80,10 @@ public function yourAction()
 }
 ```
 
-and in your template:
+To render the breadcrumbs in your twig template do the following:
 
 ```
-    {{ breadcrumbs() }}
+{{ breadcrumbs() }}
 ```
 
 Changing the template
