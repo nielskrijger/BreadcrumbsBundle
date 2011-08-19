@@ -19,10 +19,10 @@ class Crumb implements CrumbInterface
      * not to. Rather implement empty breadcrumbs (for example for the last
      * crumb in the trail) in the view.
      *
-     * @param string $url
      * @param string $title
+     * @param string $url
      */
-    public function __construct($url, $title)
+    public function __construct($title, $url)
     {
        $this->title = $title;
        $this->url = $url;

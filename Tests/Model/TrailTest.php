@@ -24,7 +24,7 @@ class TrailTest extends WebTestCase
     public function shouldAddAndRetrieveCrumb()
     {
         $trail = new Trail();
-        $trail->add("url", "title");
+        $trail->add("title", "url");
         $crumb = $trail->get("url");
         $this->assertInstanceOf("ICE\BreadcrumbsBundle\Model\CrumbInterface", $crumb);
         $this->assertEquals("url", $crumb->getUrl());
@@ -37,7 +37,7 @@ class TrailTest extends WebTestCase
     public function shouldCountCrumbs()
     {
         $trail = new Trail();
-        $trail->add("url1", "title1")->add("url2", "title2");
+        $trail->add("title1", "url1")->add("title2", "url2");
         $this->assertEquals(count($trail), 2);
     }
     
@@ -47,7 +47,7 @@ class TrailTest extends WebTestCase
     public function shouldRemoveCrumbs()
     {
         $trail = new Trail();
-        $trail->add("url1", "title1")->add("url2", "title2")->remove("url1");
+        $trail->add("title1", "url1")->add("title2", "url2")->remove("url1");
         $this->assertEquals(1, count($trail));
     }
 
@@ -57,7 +57,7 @@ class TrailTest extends WebTestCase
     public function shouldRemoveAllCrumbs()
     {
         $trail = new Trail();
-        $trail->add("url1", "title1")->add("url2", "title2")->removeAll();
+        $trail->add("title1", "url1")->add("title2", "url2")->removeAll();
         $this->assertEquals(0, count($trail));
     }
     
@@ -67,7 +67,7 @@ class TrailTest extends WebTestCase
     public function shouldIterateOverCrumbs()
     {
         $trail = new Trail();
-        $trail->add("url1", "title1")->add("url2", "title2");
+        $trail->add("title1", "url1")->add("title2", "url2");
         $i = 1;
         foreach ($trail as $k => $v) 
         {
