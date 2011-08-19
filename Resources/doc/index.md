@@ -95,7 +95,7 @@ public function firstActionTrail()
 public function secondActionTrail()
 {
     return $this->firstActionTrail()
-        ->add("Mypage", $this->get("router")->generate("mypage"))
+        ->add("Mypage", $this->get("router")->generate("mypage"));
 }
 ```
 
