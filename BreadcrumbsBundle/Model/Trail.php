@@ -3,12 +3,11 @@
 namespace ICE\BreadcrumbsBundle\Model;
 
 use ICE\BreadcrumbsBundle\Model\TrailInterface,
-    ICE\BreadcrumbsBundle\Model\TrailChainInterface,
     ICE\BreadcrumbsBundle\Model\Crumb,
     Countable,
     Iterator;
 
-class Trail implements TrailInterface, TrailChainInterface, Iterator, Countable
+class Trail implements TrailInterface, Iterator, Countable
 {
     private $container = array();
 
@@ -20,6 +19,7 @@ class Trail implements TrailInterface, TrailChainInterface, Iterator, Countable
     public function add($url, $title) 
     {
         $this->container[] = new Crumb($url, $title);
+        return $this;
     }
     
     public function get($url)
@@ -41,12 +41,6 @@ class Trail implements TrailInterface, TrailChainInterface, Iterator, Countable
             $i++;
         }
         return $result;
-    }
-    
-    public function with($url, $title)
-    {
-        $this->add($url, $title);
-        return $this;
     }
     
     public function remove($url)

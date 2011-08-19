@@ -34,20 +34,10 @@ class TrailTest extends WebTestCase
     /**
      * @test
      */
-    public function shouldAddCrumbsWithFluentInterface()
-    {
-        $trail = new Trail();
-        $trail->with("url1", "title1")->with("url2", "title2");
-        $this->assertEquals(2, count($trail));
-    }
-    
-    /**
-     * @test
-     */
     public function shouldCountCrumbs()
     {
         $trail = new Trail();
-        $trail->with("url1", "title1")->with("url2", "title2");
+        $trail->add("url1", "title1")->add("url2", "title2");
         $this->assertEquals(count($trail), 2);
     }
     
@@ -57,7 +47,7 @@ class TrailTest extends WebTestCase
     public function shouldRemoveCrumbs()
     {
         $trail = new Trail();
-        $trail->with("url1", "title1")->with("url2", "title2")->remove("url1");
+        $trail->add("url1", "title1")->add("url2", "title2")->remove("url1");
         $this->assertEquals(1, count($trail));
     }
 
@@ -67,7 +57,7 @@ class TrailTest extends WebTestCase
     public function shouldRemoveAllCrumbs()
     {
         $trail = new Trail();
-        $trail->with("url1", "title1")->with("url2", "title2")->removeAll();
+        $trail->add("url1", "title1")->add("url2", "title2")->removeAll();
         $this->assertEquals(0, count($trail));
     }
     
@@ -77,7 +67,7 @@ class TrailTest extends WebTestCase
     public function shouldIterateOverCrumbs()
     {
         $trail = new Trail();
-        $trail->with("url1", "title1")->with("url2", "title2");
+        $trail->add("url1", "title1")->add("url2", "title2");
         $i = 1;
         foreach ($trail as $k => $v) 
         {
