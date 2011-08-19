@@ -1,7 +1,7 @@
 Features
 ========
 
-A Symfony2 bundle with:  
+A Symfony2 bundle featuring:
 - Breadcrumbs service with a chained interface  
 - Twig integration
 

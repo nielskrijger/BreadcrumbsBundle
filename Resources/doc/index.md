@@ -21,7 +21,7 @@ Add the following lines in your `deps` file:
 
 ```
 [ICEBreadcrumbsBundle]
-    git=git://github.com/nielskrijger/ICEbreadcrumbsBundle.git
+    git=git://github.com/nielskrijger/BreadcrumbsBundle.git
     target=bundles/ICE/BreadcrumbsBundle
 ```
 
