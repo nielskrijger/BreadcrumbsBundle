@@ -5,7 +5,7 @@ Getting Started With ICEBreadcrumbsBundle
 
 To install the ICEBreadcrumbsBundle you need to perform three steps:
 
-1. Download FOSUserBundle
+1. Download ICEBreadcrumbsBundle
 2. Configure the Autoloader
 3. Enable the Bundle
 
