@@ -88,14 +88,12 @@ You can split the steps to create crumbs for each separate page:
 
 public function firstActionTrail()
 {
-    return $this->get("breadcrumbs")
-        ->add("Home", $this->get("router")->generate("index"));
+    return $this->get("breadcrumbs")->add("Home", $this->get("router")->generate("index"));
 }
 
 public function secondActionTrail()
 {
-    return $this->firstActionTrail()
-        ->add("Mypage", $this->get("router")->generate("mypage"));
+    return $this->firstActionTrail()->add("Mypage", $this->get("router")->generate("mypage"));
 }
 ```
 
@@ -111,3 +109,25 @@ Changing the template
 If you want to change the breadcrumbs template copy the
 `Resources/views/breadcrumbs.html.twig` file to
 `app/Resources/ICEBreadcrumbsBundle/views`, and customize.
+
+By default the last crumb in the trail is parsed with a class `last` allowing you to
+style the final anchor. If you prefer to disable the last crumb anchor
+altogether, you can create the following template:
+
+``` html
+<!-- app/Resources/ICEBreadcrumbsBundle/views/breadcrumbs.html.twig -->
+{% block breadcrumbs %}
+{% if trail|length() %}
+<div id="breadcrumbs">
+    {% for crumb in trail %}
+        {% if not loop.last %}
+			<a href="{{ crumb.url }}">{{ crumb.title }}</a> &gt;
+        {% endif %}
+		{% if loop.last %}
+			{{ crumb.title }}
+		{% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+``` html

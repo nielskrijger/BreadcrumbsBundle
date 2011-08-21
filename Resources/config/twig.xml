@@ -5,7 +5,7 @@
 
     <parameters>
         <parameter key="ice.breadcrumbs.twig.class">ICE\BreadcrumbsBundle\Twig\Extension\BreadcrumbsExtension</parameter>
-        <parameter key="ice.breadcrumbs.twig.template">ICEBreadcrumbsBundle:Breadcrumbs:breadcrumbs.html.twig</parameter>
+        <parameter key="ice.breadcrumbs.twig.template">ICEBreadcrumbsBundle::breadcrumbs.html.twig</parameter>
     </parameters>
 
     <services>
