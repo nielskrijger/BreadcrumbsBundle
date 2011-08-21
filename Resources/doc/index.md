@@ -132,4 +132,4 @@ altogether, you can create the following template:
 </div>
 {% endif %}
 {% endblock %}
-``` html
+```
