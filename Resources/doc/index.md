@@ -80,7 +80,7 @@ public function yourAction()
 }
 ```
 
-You can split the steps to create crumbs for each separate page:
+You can split the steps to create crumbs for each separate action:
 
 ``` php
 <?php
@@ -96,6 +96,8 @@ public function secondActionTrail()
     return $this->firstActionTrail()->add("Mypage", $this->get("router")->generate("mypage"));
 }
 ```
+
+// TODO: introduce a method for a more generic approach in adding crumbs either as an example in the docs or additional features in the bundle.
 
 To render the breadcrumbs in your twig template do the following:
 
