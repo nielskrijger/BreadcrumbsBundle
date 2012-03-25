@@ -211,7 +211,6 @@ Finally, you can generate breadcrumb trails in your controller like this:
 
 ``` php
 <?php
-$container->
 class NewsController
 {
     public function getNewsitemAction($slug)
