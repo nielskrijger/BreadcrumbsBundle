@@ -62,8 +62,8 @@ public function registerBundles()
 }
 ```
 
-Usage
-=====
+Loading crumbs
+==============
 
 The breadcrumbs trail is available as a service.
 You can access it in your controller directly:
@@ -97,12 +97,153 @@ public function secondActionTrail()
 }
 ```
 
-// TODO: introduce a method for a more generic approach in adding crumbs either as an example in the docs or additional features in the bundle.
-
-To render the breadcrumbs in your twig template do the following:
+Rendering breadcrinbs in twig
+=============================
+To render the breadcrumbs in a twig template do the following:
 
 ```
 {{ breadcrumbs() }}
+```
+
+Advanced usage
+==============
+If you need more reusability consider creating a breadcrumbs trail builder. For example, you could create something like this:
+
+``` php
+<?php
+
+namespace MY\NewsBundle\Breadcrumbs;
+
+use ICE\BreadcrumbsBundle\Model\TrailInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+class NewsBreadcrumbsBuilder 
+{
+    protected $trail;
+    protected $newsItem;
+    protected $isCreating;
+    protected $isEditing;
+    protected $router;
+    
+    public function __construct(TrailInterface $trail, UrlGeneratorInterface $router)
+    {
+        $this->trail = $trail;
+        $this->router = $router;
+        $this->isEditing = false;
+        $this->isCreating = false;
+        $this->newItem = null;
+    }
+    
+    public function newsItem($newsItem)
+    {
+        $this->newsItem = $newsItem;
+        return $this;
+    }
+    
+    public function editing($isEditing = true)
+    {
+        $this->isEditing = $isEditing;
+        return $this;
+    }
+    
+    public function creating($isCreating = true)
+    {
+        $this->isCreating = $isCreating;
+        return $this;
+    }
+    
+    public function build()
+    {
+        $this->trail->add(
+            "Latest news", 
+            $this->router->generate("get_news")
+        );
+        
+        if (!empty($this->newsItem)) {
+            $this->trail->add(
+                $this->newsItem->getTitle(), 
+                $this->router->generate("get_newsitem", array(
+                    'slug' => $this->newsItem->getSlug()
+                ))
+            );
+        }
+        
+        if ($this->isCreating) {
+            $this->trail->add(
+                "New news item", 
+                $this->router->generate("new_newsitem")
+            );
+        }
+        
+        if ($this->isEditing) {
+            $this->trail->add(
+                "Edit news item", 
+                $this->router->generate("edit_newsitem", array(
+                    'slug' => $this->newsItem->getSlug()
+                ))
+            );
+        }
+        
+        return $this->trail;
+    }
+}
+```
+
+Next, register your breadcrumbs trail builder in the service container:
+
+``` xml
+<?xml version="1.0" ?>
+ 
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <services>
+        <service id="news.breadcrumbs.builder" class="MY\NewsBundle\Breadcrumbs\NewsBreadcrumbsBuilder">
+            <argument type="service" id="breadcrumbs" />
+            <argument type="service" id="router" />
+        </service>
+    </services>
+    
+</container>
+```
+
+Finally, you can generate breadcrumb trails in your controller like this:
+
+``` php
+<?php
+$container->
+class NewsController
+{
+    public function getNewsitemAction($slug)
+    {
+    	// ... fetch $newsItem
+    	
+        $this->getBreadcrumbsBuilder()->newsItem($newsItem)->build();
+    }
+    
+    public function getEditNewsitem($slug)
+    {
+    	// ... fetch $newsItem
+    	
+        $this->getBreadcrumbsBuilder()->newsItem($newsItem)->editing()->build();
+    }
+    
+    public function getNewNewsitem()
+    {
+        $this->getBreadcrumbsBuilder()->creating()->build();
+    }
+    
+    public function getNews()
+    {
+    	$this->getBreadcrumbsBuilder()->build();
+    }
+
+    private function getBreadcrumbsBuilder() 
+    {
+        return $this->container->get('news.breadcrumbs.builder');
+    }
+}
 ```
 
 Changing the template
