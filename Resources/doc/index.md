@@ -62,8 +62,7 @@ public function registerBundles()
 }
 ```
 
-Loading crumbs
-==============
+## Simple usage
 
 The breadcrumbs trail is available as a service.
 You can access it in your controller directly:
@@ -97,16 +96,16 @@ public function secondActionTrail()
 }
 ```
 
-Rendering breadcrinbs in twig
-=============================
+## Rendering breadcrumbs in twig
+
 To render the breadcrumbs in a twig template do the following:
 
 ```
 {{ breadcrumbs() }}
 ```
 
-Advanced usage
-==============
+## Advanced usage
+
 If you need more reusability consider creating a breadcrumbs trail builder. For example, you could create something like this:
 
 ``` php
