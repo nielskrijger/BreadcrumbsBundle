@@ -10,19 +10,27 @@ use ICE\BreadcrumbsBundle\Model\CrumbInterface;
  */
 class Crumb implements CrumbInterface
 {
-    private
-        $title,
-        $url;
+    /**
+     * Crumb title
+     * 
+     * @var string 
+     */
+    private $title;
     
     /**
-     * Creates a breadcrumb. The url can be left empty but you're advised 
-     * not to. Rather implement empty breadcrumbs (for example for the last
-     * crumb in the trail) in the view.
+     * Crumb url
+     * 
+     * @var string 
+     */
+    private $url;
+    
+    /**
+     * Creates a breadcrumb. 
      *
      * @param string $title
-     * @param string $url
+     * @param string $url Optional
      */
-    public function __construct($title, $url)
+    public function __construct($title, $url="")
     {
        $this->title = $title;
        $this->url = $url;

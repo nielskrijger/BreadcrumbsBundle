@@ -27,4 +27,13 @@ interface TrailInterface
      * @return TrailInterface
      */
     public function removeAll();
+    
+    /**
+     * Returns the crumb by the crumb url or, when the crumb has no url, attempts
+     * to find the crumb by its index. The first crumb without url will have
+     * index 0, the second 1, etc.
+     * 
+     * @param $urlOrIndex 
+     */
+    public function get($urlOrIndex);
 }

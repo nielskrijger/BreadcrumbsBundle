@@ -19,15 +19,19 @@ class Trail implements TrailInterface, Iterator, Countable
         reset($this->container);
     }
     
-    public function add($title, $url)
+    public function add($title, $url="")
     {
-        $this->container[$url] = new Crumb($title, $url);
+        if (empty($url)) {
+            $this->container[] = new Crumb($title);
+        } else {
+            $this->container[$url] = new Crumb($title, $url);
+        }
         return $this;
     }
     
-    public function get($url)
+    public function get($urlOrIndex)
     {
-        return (isset($this->container[$url])) ? $this->container[$url] : null;
+        return (isset($this->container[$urlOrIndex])) ? $this->container[$urlOrIndex] : null;
     }
     
     public function remove($url)

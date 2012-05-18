@@ -34,6 +34,19 @@ class TrailTest extends WebTestCase
     /**
      * @test
      */
+    public function shouldAllowEmptyUrl()
+    {
+        $trail = new Trail();
+        $trail->add("title");
+        $crumb = $trail->get(0);
+        $this->assertInstanceOf("ICE\BreadcrumbsBundle\Model\CrumbInterface", $crumb);
+        $this->assertEquals("", $crumb->getUrl());
+        $this->assertEquals("title", $crumb->getTitle());
+    }
+    
+    /**
+     * @test
+     */
     public function shouldCountCrumbs()
     {
         $trail = new Trail();

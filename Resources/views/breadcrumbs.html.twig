@@ -2,12 +2,8 @@
 {% if trail|length() %}
 <div id="breadcrumbs">
     {% for crumb in trail %}
-        {% if not loop.last %}
-			<a href="{{ crumb.url }}">{{ crumb.title }}</a> &gt;
-        {% endif %}
-		{% if loop.last %}
-			<a href="{{ crumb.url }}" class="last">{{ crumb.title }}</a>
-		{% endif %}
+        <a href="{% if crumb.url %}{{ crumb.url }}{% else %}#{% endif %}" {% if loop.last %} class="last"{% endif %}>{{ crumb.title }}</a>
+        {% if not loop.last %} &gt;{% endif %}
     {% endfor %}
 </div>
 {% endif %}
