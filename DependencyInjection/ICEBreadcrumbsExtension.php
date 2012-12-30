@@ -13,6 +13,9 @@ class ICEBreadcrumbsExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
         $loader = new XmlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
@@ -20,10 +23,9 @@ class ICEBreadcrumbsExtension extends Extension
         $loader->load('breadcrumbs.xml');
         $loader->load('twig.xml');
 
-       /* DEPRECATED No longer needed currently
-        $processor     = new Processor();
-        $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, $configs);
-        */
+        if (isset($config['template']))
+        {
+            $container->setParameter('ice.breadcrumbs.twig.template', $config['template']);
+        }
     }
 }
