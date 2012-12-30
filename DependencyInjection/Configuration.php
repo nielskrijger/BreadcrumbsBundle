@@ -9,16 +9,19 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $builder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('ice_breadcrumbs');
 
-        $builder->root('breadcrumbs')
+        $rootNode
             ->children()
                 ->scalarNode('trail_class')
                     ->defaultValue('ICE\BreadcrumbsBundle\Model\Trail')
-                    ->end()
+                ->end()
+                ->scalarNode('template')
+                    ->defaultValue('ICEBreadcrumbsBundle::breadcrumbs.html.twig')
                 ->end()
             ->end()
         ;
-        return $builder;
+        return $treeBuilder;
     }
 }

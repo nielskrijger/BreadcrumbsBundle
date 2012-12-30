@@ -116,14 +116,14 @@ namespace MY\NewsBundle\Breadcrumbs;
 use ICE\BreadcrumbsBundle\Model\TrailInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class NewsBreadcrumbsBuilder 
+class NewsBreadcrumbsBuilder
 {
     protected $trail;
     protected $newsItem;
     protected $isCreating;
     protected $isEditing;
     protected $router;
-    
+
     public function __construct(TrailInterface $trail, UrlGeneratorInterface $router)
     {
         $this->trail = $trail;
@@ -132,57 +132,57 @@ class NewsBreadcrumbsBuilder
         $this->isCreating = false;
         $this->newItem = null;
     }
-    
+
     public function newsItem($newsItem)
     {
         $this->newsItem = $newsItem;
         return $this;
     }
-    
+
     public function editing($isEditing = true)
     {
         $this->isEditing = $isEditing;
         return $this;
     }
-    
+
     public function creating($isCreating = true)
     {
         $this->isCreating = $isCreating;
         return $this;
     }
-    
+
     public function build()
     {
         $this->trail->add(
-            "Latest news", 
+            "Latest news",
             $this->router->generate("get_news")
         );
-        
+
         if (!empty($this->newsItem)) {
             $this->trail->add(
-                $this->newsItem->getTitle(), 
+                $this->newsItem->getTitle(),
                 $this->router->generate("get_newsitem", array(
                     'slug' => $this->newsItem->getSlug()
                 ))
             );
         }
-        
+
         if ($this->isCreating) {
             $this->trail->add(
-                "New news item", 
+                "New news item",
                 $this->router->generate("new_newsitem")
             );
         }
-        
+
         if ($this->isEditing) {
             $this->trail->add(
-                "Edit news item", 
+                "Edit news item",
                 $this->router->generate("edit_newsitem", array(
                     'slug' => $this->newsItem->getSlug()
                 ))
             );
         }
-        
+
         return $this->trail;
     }
 }
@@ -192,18 +192,18 @@ Next, register your breadcrumbs trail builder in the service container:
 
 ``` xml
 <?xml version="1.0" ?>
- 
+
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
+
     <services>
         <service id="news.breadcrumbs.builder" class="MY\NewsBundle\Breadcrumbs\NewsBreadcrumbsBuilder">
             <argument type="service" id="breadcrumbs" />
             <argument type="service" id="router" />
         </service>
     </services>
-    
+
 </container>
 ```
 
@@ -216,28 +216,28 @@ class NewsController
     public function getNewsitemAction($slug)
     {
     	// ... fetch $newsItem
-    	
+
         $this->getBreadcrumbsBuilder()->newsItem($newsItem)->build();
     }
-    
+
     public function getEditNewsitem($slug)
     {
     	// ... fetch $newsItem
-    	
+
         $this->getBreadcrumbsBuilder()->newsItem($newsItem)->editing()->build();
     }
-    
+
     public function getNewNewsitem()
     {
         $this->getBreadcrumbsBuilder()->creating()->build();
     }
-    
+
     public function getNews()
     {
     	$this->getBreadcrumbsBuilder()->build();
     }
 
-    private function getBreadcrumbsBuilder() 
+    private function getBreadcrumbsBuilder()
     {
         return $this->container->get('news.breadcrumbs.builder');
     }
@@ -247,7 +247,19 @@ class NewsController
 Changing the template
 =======================
 
-If you want to change the breadcrumbs template copy the
+There are two options how to customize the template used by this bundle:
+
+Add config option to app/config.yml:
+
+```
+ice_breadcrumbs:
+    template: AcmeDemoBundle::breadcrumbs.html.twig
+```
+
+ICEBreadcrumbsBundle will than use AcmeDemoBundle/Resources/breadcrumbs.html.twig instead of the default one.
+
+
+Another option to change the breadcrumbs template is to copy the
 `Resources/views/breadcrumbs.html.twig` file to
 `app/Resources/ICEBreadcrumbsBundle/views`, and customize.
 
