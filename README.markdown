@@ -1,8 +1,8 @@
 Features
 ========
 
-A Symfony2 bundle featuring:  
-- Breadcrumbs service with a chained interface  
+A Symfony2 bundle featuring:
+- Breadcrumbs service with a chained interface
 - Twig integration
 
 Documentation
@@ -12,10 +12,8 @@ The documentation can be found in:
 
     Resources/doc/index.md
 
-License
+License: MIT
 -------
-
-Do whatever you like with this bundle.
 
 Reporting an issue or a feature request
 ---------------------------------------
