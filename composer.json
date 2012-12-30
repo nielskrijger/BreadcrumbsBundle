@@ -1,0 +1,29 @@
+{
+    "name": "nielskrijger/breadcrumbs-bundle",
+    "description": "Breadcrumbs bundle for Symfony2.",
+    "keywords": ["breadcrumbs"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "homepage": "https://github.com/nielskrijger/BreadcrumbsBundle",
+    "authors": [
+        {
+            "name": "Niels Krijger",
+            "homepage": "http://www.nielskrijger.com/"
+        },
+        {
+            "name": "Community",
+            "homepage": "https://github.com/nielskrijger/BreadcrumbsBundle/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": ">=2.0.0",
+        "twig/twig": ">=1.11.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "ICE\\BreadcrumbsBundle\\": ""
+        }
+    },
+    "target-dir" : "ICE/BreadcrumbsBundle"
+}
